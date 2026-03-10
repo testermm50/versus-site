@@ -1,194 +1,69 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Versus Handmade | Catálogo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <title>Versus Handmade</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --fundo: #fcf9f5; 
-            --bege-escuro: #f3eae0;
-            --dourado: #b89352; 
-            --texto: #2c2c2c; 
-            --branco: #ffffff;
-        }
-
-        body { 
-            margin: 0; 
-            background-color: var(--fundo); 
-            font-family: 'Montserrat', sans-serif; 
-            color: var(--texto);
-            line-height: 1.6;
-        }
-
-        /* Topo Luxuoso */
-        header { 
-            text-align: center; 
-            padding: 60px 20px;
-            background: var(--branco);
-            border-bottom: 1px solid var(--bege-escuro);
-            margin-bottom: 40px;
-        }
-
-        .brand-logo { 
-            max-width: 180px; 
-            height: auto; 
-            transition: 0.5s;
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
-            letter-spacing: 2px;
-            margin-top: 15px;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-        }
-
-        /* Filtros Modernos */
-        .filtros { 
-            display: flex; 
-            justify-content: center; 
-            gap: 15px; 
-            margin-bottom: 50px; 
-            flex-wrap: wrap; 
-        }
-
-        .btn-filtro { 
-            background: transparent; 
-            border: none;
-            border-bottom: 2px solid transparent;
-            color: var(--texto); 
-            padding: 5px 10px; 
-            cursor: pointer; 
-            font-size: 0.75rem; 
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s; 
-        }
-
-        .btn-filtro.active, .btn-filtro:hover { 
-            border-bottom: 2px solid var(--dourado);
-            color: var(--dourado);
-        }
-
-        /* Grelha de Produtos */
-        .mural { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 40px; 
-            padding: 0 20px; 
-            max-width: 1100px; 
-            margin: 0 auto; 
-        }
-
-        .produto { 
-            background: var(--branco); 
-            transition: 0.4s ease-in-out; 
-            position: relative;
-        }
-
-        .img-container {
-            overflow: hidden;
-            background: var(--bege-escuro);
-            height: 380px;
-        }
-
-        .produto img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: 0.6s;
-        }
-
-        .produto:hover img {
-            transform: scale(1.05);
-        }
-
-        .info { 
-            padding: 25px 10px; 
-            text-align: center;
-        }
-
-        .categoria-tag {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--dourado);
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .info h3 { 
-            font-family: 'Playfair Display', serif; 
-            margin: 5px 0 15px 0; 
-            font-size: 1.4rem;
-            font-weight: 400;
-        }
-
-        .btn-whats { 
-            display: inline-block; 
-            text-decoration: none; 
-            border: 1px solid var(--texto);
-            color: var(--texto); 
-            padding: 12px 30px; 
-            font-size: 0.7rem; 
-            letter-spacing: 2px;
-            transition: 0.3s;
-        }
-
-        .btn-whats:hover {
-            background: var(--texto);
-            color: var(--branco);
-        }
-
-        footer { 
-            text-align: center; 
-            padding: 100px 20px 40px; 
-            font-size: 0.7rem; 
-            letter-spacing: 3px;
-            opacity: 0.6;
-        }
-
-        /* Mobile */
-        @media (max-width: 600px) {
-            .mural { grid-template-columns: 1fr; padding: 0 30px; }
-            .img-container { height: 320px; }
-        }
+        :root { --fundo: #fcf9f5; --dourado: #b89352; --texto: #2c2c2c; }
+        body { margin: 0; background-color: var(--fundo); font-family: 'Montserrat', sans-serif; color: var(--texto); }
+        header { text-align: center; padding: 40px; background: white; border-bottom: 1px solid #eee; }
+        .brand-logo { max-width: 150px; }
+        .filtros { display: flex; justify-content: center; gap: 10px; margin: 30px 0; flex-wrap: wrap; }
+        .btn-filtro { background: none; border: 1px solid #ccc; padding: 8px 15px; cursor: pointer; border-radius: 20px; font-size: 0.7rem; }
+        .btn-filtro.active { background: var(--dourado); color: white; border-color: var(--dourado); }
+        .mural { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 20px; max-width: 1100px; margin: 0 auto; }
+        .produto { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; padding-bottom: 20px; }
+        .produto img { width: 100%; height: 300px; object-fit: cover; }
+        .info h3 { font-family: 'Playfair Display', serif; margin: 15px 0 5px; }
+        .btn-whats { display: inline-block; text-decoration: none; border: 1px solid var(--texto); color: var(--texto); padding: 8px 20px; font-size: 0.7rem; margin-top: 10px; }
     </style>
 </head>
 <body>
-
-    <header>
-        <img src="logo.png" alt="Versus Handmade" class="brand-logo">
-        <h1>Handmade Essence</h1>
-    </header>
-
+    <header><img src="logo.png" class="brand-logo"></header>
     <div class="filtros" id="filtros-container"></div>
-    
     <section class="mural" id="lista-produtos"></section>
 
-    <footer>
-        <p>VERSUS HANDMADE — PORTUGAL</p>
-    </footer>
-
     <script>
-        const meuWhatsapp = "351910000000"; 
+        const meuWhatsapp = "351910000000"; // Muda para o teu número
 
-        const meusProdutos = [
-            { nome: "Arranjo Royal", categoria: "Flores", imagem: "flores1.jpg" },
-            { nome: "Vela Lavanda", categoria: "Velas", imagem: "vela.jpg" },
-            { nome: "Cesta Premium", categoria: "Cestas", imagem: "cesta.jpg" },
-            { nome: "Bouquet Noiva", categoria: "Noivas", imagem: "noiva.jpg" }
-        ];
-
-        const container = document.getElementById('lista-produtos');
-        const filtrosContainer = document.getElementById('filtros-container');
-
-        function mostrar(lista, catAtiva) {
-            container.innerHTML = '';
+        async function carregarProdutos() {
+            const res = await fetch('produtos.json');
+            const produtos = await res.json();
             
-            // Atualizar botões de
+            const container = document.getElementById('lista-produtos');
+            const filtros = document.getElementById('filtros-container');
+            
+            function mostrar(lista) {
+                container.innerHTML = '';
+                lista.forEach(p => {
+                    container.innerHTML += `
+                        <div class="produto">
+                            <img src="${p.imagem}" onerror="this.src='https://via.placeholder.com/400x500?text=Sem+Foto'">
+                            <div class="info">
+                                <small>${p.categoria}</small>
+                                <h3>${p.nome}</h3>
+                                <p>${p.preco}€</p>
+                                <a href="https://wa.me/${meuWhatsapp}?text=Olá, quero o ${p.nome}" class="btn-whats">ENCOMENDAR</a>
+                            </div>
+                        </div>`;
+                });
+            }
+
+            // Criar botões de filtro automaticamente
+            const cats = ['Todos', ...new Set(produtos.map(p => p.categoria))];
+            cats.forEach(c => {
+                const b = document.createElement('button');
+                b.className = 'btn-filtro';
+                b.innerText = c;
+                b.onclick = () => mostrar(c === 'Todos' ? produtos : produtos.filter(p => p.categoria === c));
+                filtros.appendChild(b);
+            });
+
+            mostrar(produtos);
+        }
+        carregarProdutos();
+    </script>
 </body>
 </html>
