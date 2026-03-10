@@ -1,20 +1,16 @@
 [
   {
-    "nome": "Vela de Soja Lavanda",
+    "nome": "Vela de Lavanda",
     "categoria": "Velas",
     "preco": "12.50",
-    "imagem": "vela.jpg"
+    "imagem": "vela.jpg",
+    "descricao": "Feita com cera de soja 100% natural e óleos essenciais. Aroma relaxante ideal para momentos de autocuidado."
   },
   {
-    "nome": "Arranjo Seco Outono",
-    "categoria": "Flores",
-    "preco": "25.00",
-    "imagem": "flores.jpg"
-  },
-  {
-    "nome": "Cesta",
-    "categoria": "Cesta",
-    "preco": "25.00",
-    "imagem": "cesta.jpg"
+    "nome": "Cesta Primavera",
+    "categoria": "Cestas",
+    "preco": "45.00",
+    "imagem": "cesta.jpg",
+    "descricao": "Uma seleção cuidadosa de flores secas e preservadas em tons terra. Durabilidade superior a 2 anos."
   }
 ]
