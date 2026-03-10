@@ -10,71 +10,16 @@
         body { margin: 0; background-color: var(--fundo); font-family: 'Montserrat', sans-serif; color: var(--texto); }
         header { text-align: center; padding: 60px 20px; background: white; border-bottom: 1px solid #f3eae0; }
         .brand-logo { max-width: 200px; height: auto; }
-        .filtros { display: flex; justify-content: center; gap: 20px; margin: 40px 0; flex-wrap: wrap; }
-        .btn-filtro { background: none; border: none; border-bottom: 2px solid transparent; padding: 5px 10px; cursor: pointer; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
-        .btn-filtro.active { border-bottom: 2px solid var(--dourado); color: var(--dourado); }
-        .mural { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
-        .produto { background: white; transition: 0.4s; position: relative; text-align: center; padding-bottom: 30px; }
-        .img-container { height: 400px; overflow: hidden; background: #f3eae0; }
-        .produto img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-        .produto:hover img { transform: scale(1.05); }
-        .info h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 20px 0 10px; font-weight: 400; }
-        .preco { color: var(--dourado); letter-spacing: 1px; margin-bottom: 20px; }
-        .btn-whats { display: inline-block; text-decoration: none; border: 1px solid var(--texto); color: var(--texto); padding: 12px 30px; font-size: 0.7rem; letter-spacing: 2px; transition: 0.3s; }
-        .btn-whats:hover { background: var(--texto); color: white; }
-        footer { text-align: center; padding: 80px; font-size: 0.7rem; letter-spacing: 3px; opacity: 0.5; }
-    </style>
-</head>
-<body>
-    <header><img src="logo.png" class="brand-logo"></header>
-    <div class="filtros" id="filtros-container"></div>
-    <section class="mural" id="lista-produtos"></section>
-    <footer>VERSUS HANDMADE — PORTUGAL</footer>
-
-    <script>
-        const meuWhatsapp = "351910000000"; // ATUALIZA ESTE NÚMERO!
-
-        async function iniciar() {
-            try {
-                const res = await fetch('produtos.json');
-                const produtos = await res.json();
-                const container = document.getElementById('lista-produtos');
-                const filtrosContainer = document.getElementById('filtros-container');
-
-                function mostrar(lista, catAtiva) {
-                    container.innerHTML = '';
-                    document.querySelectorAll('.btn-filtro').forEach(btn => {
-                        btn.classList.toggle('active', btn.innerText === catAtiva);
-                    });
-
-                    lista.forEach(p => {
-                        container.innerHTML += `
-                            <div class="produto">
-                                <div class="img-container">
-                                    <img src="${p.imagem}" onerror="this.src='https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=800'">
-                                </div>
-                                <div class="info">
-                                    <small style="letter-spacing:2px; opacity:0.6">${p.categoria}</small>
-                                    <h3>${p.nome}</h3>
-                                    <p class="preco">${p.preco}€</p>
-                                    <a href="https://wa.me/${meuWhatsapp}?text=Olá! Quero saber mais sobre: ${p.nome}" class="btn-whats">CONSULTAR</a>
-                                </div>
-                            </div>`;
-                    });
-                }
-
-                const cats = ['Todos', ...new Set(produtos.map(p => p.categoria))];
-                cats.forEach(c => {
-                    const b = document.createElement('button');
-                    b.className = 'btn-filtro' + (c === 'Todos' ? ' active' : '');
-                    b.innerText = c;
-                    b.onclick = () => mostrar(c === 'Todos' ? produtos : produtos.filter(p => p.categoria === c), c);
-                    filtrosContainer.appendChild(b);
-                });
-                mostrar(produtos, 'Todos');
-            } catch (e) { console.error("Erro ao carregar produtos. Verifica o nome do ficheiro JSON."); }
+        .mural { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
+        .produto { background: white; text-align: center; padding-bottom: 30px; }
+        .img-container { height: 400px; overflow: hidden; background: #f3eae0; cursor: zoom-in; }
+        .produto img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+        .produto:hover img { opacity: 0.8; }
+        
+        /* Estilo da Foto Ampliada (Lightbox) */
+        #lightbox {
+            display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; cursor: zoom-out;
         }
-        iniciar();
-    </script>
-</body>
-</html>
+        #lightbox img { max-width: 90%; max-height: 80%; border: 3px solid white; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        #lightbox-caption { color: white; position: absolute; bottom: 50px; font-family: 'Playfair Display', serif; font
