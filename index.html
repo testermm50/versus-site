@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Versus Handmade</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root { --fundo: #F3EAE0; --dourado: #C5A059; --texto: #333; }
+        body { margin: 0; background-color: var(--fundo); font-family: 'Montserrat', sans-serif; color: var(--texto); }
+        header { text-align: center; padding: 40px 20px; }
+        .brand-logo { max-width: 220px; height: auto; }
+        .filtros { text-align: center; margin-bottom: 40px; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+        .btn-filtro { background: white; border: 1px solid var(--dourado); color: var(--dourado); padding: 8px 20px; cursor: pointer; border-radius: 25px; font-size: 0.7rem; letter-spacing: 1px; transition: 0.3s; }
+        .btn-filtro.active, .btn-filtro:hover { background: var(--dourado); color: white; }
+        .mural { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 0 40px; max-width: 1200px; margin: 0 auto; }
+        .produto { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.4s; text-align: center; }
+        .produto:hover { transform: translateY(-5px); }
+        .produto img { width: 100%; height: 300px; object-fit: cover; }
+        .info { padding: 20px; }
+        .info h3 { font-family: 'Playfair Display', serif; margin: 10px 0; color: var(--dourado); }
+        .btn-whats { display: inline-block; text-decoration: none; background: var(--dourado); color: white; padding: 10px 20px; font-size: 0.7rem; border-radius: 5px; font-weight: bold; margin-top: 10px; }
+        footer { text-align: center; padding: 60px; opacity: 0.5; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="Versus Handmade" class="brand-logo">
+    </header>
+
+    <div class="filtros" id="filtros-container"></div>
+    <section class="mural" id="lista-produtos"></section>
+
+    <footer><p>© VERSUS HANDMADE</p></footer>
+
+    <script>
+        const meuWhatsapp = "351910000000"; // ATUALIZA COM O TEU NÚMERO!
+
+        // INSERE AQUI OS TEUS PRODUTOS E DIVISÕES
+        const meusProdutos = [
+            { nome: "Arranjo Royal", categoria: "Flores", imagem: "flores1.jpg" },
+            { nome: "Vela Lavanda", categoria: "Velas", imagem: "vela.jpg" },
+            { nome: "Cesta Premium", categoria: "Cestas", imagem: "cesta.jpg" }
+        ];
+
+        const container = document.getElementById('lista-produtos');
+        const filtrosContainer = document.getElementById('filtros-container');
+
+        function mostrar(lista) {
+            container.innerHTML = '';
+            lista.forEach(p => {
+                const link = `https://wa.me/${meuWhatsapp}?text=Quero%20saber%20mais%20sobre:%20${p.nome}`;
+                container.innerHTML += `
+                    <div class="produto">
+                        <img src="${p.imagem}" onerror="this.src='https://via.placeholder.com/400x500?text=Inserir+Foto'">
+                        <div class="info">
+                            <p style="font-size:0.6rem; color:#999; letter-spacing:2px;">${p.categoria}</p>
+                            <h3>${p.nome}</h3>
+                            <a href="${link}" target="_blank" class="btn-whats">ENCOMENDAR</a>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        const cats = ['Todos', ...new Set(meusProdutos.map(p => p.categoria))];
+        cats.forEach(c => {
+            const b = document.createElement('button');
+            b.className = 'btn-filtro';
+            b.innerText = c;
+            b.onclick = () => mostrar(c === 'Todos' ? meusProdutos : meusProdutos.filter(p => p.categoria === c));
+            filtrosContainer.appendChild(b);
+        });
+
+        mostrar(meusProdutos);
+    </script>
+</body>
+</html>
