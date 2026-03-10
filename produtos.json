@@ -12,5 +12,11 @@
     "preco": "45.00",
     "imagem": "cesta.jpg",
     "descricao": "Uma seleção cuidadosa de flores secas e preservadas em tons terra. Durabilidade superior a 2 anos."
-  }
+  },
+  "nome": "Flores",
+    "categoria": "Flores",
+    "preco": "25.00",
+    "imagem": "flores.jpg",
+    "descricao": "Coelhinhos."
+  },
 ]
