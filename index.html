@@ -48,4 +48,73 @@
         <h1>Bem-vindos à Versus</h1>
         <p>Peças feitas à mão com alma e essência. Flores secas, velas e detalhes que contam a sua história.</p>
     </section>
-    <div class="filtros" id="
+    <div class="filtros" id="filtros-container"></div>
+
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="lightbox-img" src="">
+        <div id="lightbox-text">
+            <h2 id="lightbox-nome"></h2>
+            <p id="lightbox-desc"></p>
+        </div>
+    </div>
+
+    <section class="mural" id="lista-produtos"></section>
+    <footer>
+        <a href="https://instagram.com/versus_handmade" target="_blank" class="instagram-link">@versus_handmade</a>
+        <p style="font-size: 0.6rem; opacity: 0.4; margin-top: 20px; letter-spacing: 2px;">VERSUS HANDMADE — PORTUGAL</p>
+    </footer>
+
+    <script>
+        const linkInstagram = "https://instagram.com/versus_handmade"; 
+        let produtosGlobal = [];
+
+        async function iniciar() {
+            try {
+                const res = await fetch('produtos.json');
+                produtosGlobal = await res.json();
+                const container = document.getElementById('lista-produtos');
+                const filtrosContainer = document.getElementById('filtros-container');
+
+                function mostrar(lista, catAtiva) {
+                    container.innerHTML = '';
+                    document.querySelectorAll('.btn-filtro').forEach(btn => btn.classList.toggle('active', btn.innerText === catAtiva));
+                    lista.forEach((p, index) => {
+                        container.innerHTML += `
+                            <div class="produto">
+                                <div class="img-container" onclick="ampliar(${index}, event)">
+                                    <img src="${p.imagem}" onerror="this.src='https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=800'">
+                                </div>
+                                <div class="info">
+                                    <small style="opacity:0.5; text-transform:uppercase; font-size:0.6rem; display:block; margin-top:20px;">${p.categoria}</small>
+                                    <h3>${p.nome}</h3>
+                                    <p class="preco">${p.preco}€</p>
+                                    <a href="${linkInstagram}" target="_blank" class="btn-insta">CONSULTAR</a>
+                                </div>
+                            </div>`;
+                    });
+                }
+
+                const categorias = ['Todos', ...new Set(produtosGlobal.map(p => p.categoria))];
+                categorias.forEach(cat => {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn-filtro' + (cat === 'Todos' ? ' active' : '');
+                    btn.innerText = cat;
+                    btn.onclick = () => mostrar(cat === 'Todos' ? produtosGlobal : produtosGlobal.filter(p => p.categoria === cat), cat);
+                    filtrosContainer.appendChild(btn);
+                });
+                mostrar(produtosGlobal, 'Todos');
+            } catch (e) { console.error(e); }
+        }
+
+        function ampliar(index, event) {
+            const p = produtosGlobal[index];
+            document.getElementById('lightbox-img').src = p.imagem;
+            document.getElementById('lightbox-nome').innerText = p.nome;
+            document.getElementById('lightbox-desc').innerText = p.descricao || "Peça artesanal produzida com cuidado e dedicação.";
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        iniciar();
+    </script>
+</body>
+</html>
