@@ -34,4 +34,85 @@
 
         /* Info */
         .info h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 20px 0 10px; font-weight: 400; }
-        .preco { color: var(--dourado); letter-spacing: 1px; margin-bottom: 20px; font-size:
+        .preco { color: var(--dourado); letter-spacing: 1px; margin-bottom: 20px; font-size: 0.9rem; }
+        .btn-whats { display: inline-block; text-decoration: none; border: 1px solid var(--texto); color: var(--texto); padding: 12px 30px; font-size: 0.7rem; letter-spacing: 2px; transition: 0.3s; }
+        .btn-whats:hover { background: var(--texto); color: white; }
+        
+        footer { text-align: center; padding: 80px; font-size: 0.7rem; letter-spacing: 3px; opacity: 0.5; }
+    </style>
+</head>
+<body>
+
+    <header><img src="logo.png" class="brand-logo"></header>
+    
+    <div class="filtros" id="filtros-container"></div>
+
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="lightbox-img" src="">
+    </div>
+
+    <section class="mural" id="lista-produtos"></section>
+
+    <footer>VERSUS HANDMADE — PORTUGAL</footer>
+
+    <script>
+        const meuWhatsapp = "351910000000"; // Altera para o teu número real!
+
+        async function iniciar() {
+            try {
+                // Tenta carregar o ficheiro. Lembra-te de renomear "podrutos" para "produtos" no GitHub!
+                const res = await fetch('produtos.json');
+                const produtos = await res.json();
+                
+                const container = document.getElementById('lista-produtos');
+                const filtrosContainer = document.getElementById('filtros-container');
+
+                function mostrar(lista, catAtiva) {
+                    container.innerHTML = '';
+                    
+                    // Atualiza qual botão de categoria está aceso
+                    document.querySelectorAll('.btn-filtro').forEach(btn => {
+                        btn.classList.toggle('active', btn.innerText === catAtiva);
+                    });
+
+                    lista.forEach(p => {
+                        container.innerHTML += `
+                            <div class="produto">
+                                <div class="img-container" onclick="ampliar('${p.imagem}')">
+                                    <img src="${p.imagem}" onerror="this.src='https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=800'">
+                                </div>
+                                <div class="info">
+                                    <small style="letter-spacing:2px; opacity:0.6; text-transform:uppercase; font-size:0.6rem">${p.categoria}</small>
+                                    <h3>${p.nome}</h3>
+                                    <p class="preco">${p.preco}€</p>
+                                    <a href="https://wa.me/${meuWhatsapp}?text=Olá! Gostaria de saber mais sobre o produto: ${p.nome}" target="_blank" class="btn-whats">CONSULTAR</a>
+                                </div>
+                            </div>`;
+                    });
+                }
+
+                // Cria os botões de categorias automaticamente baseados no teu ficheiro JSON
+                const categorias = ['Todos', ...new Set(produtos.map(p => p.categoria))];
+                categorias.forEach(cat => {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn-filtro' + (cat === 'Todos' ? ' active' : '');
+                    btn.innerText = cat;
+                    btn.onclick = () => mostrar(cat === 'Todos' ? produtos : produtos.filter(p => p.categoria === cat), cat);
+                    filtrosContainer.appendChild(btn);
+                });
+
+                mostrar(produtos, 'Todos');
+            } catch (e) {
+                document.getElementById('lista-produtos').innerHTML = "<p>Erro ao carregar produtos. Verifica se o ficheiro se chama produtos.json</p>";
+            }
+        }
+
+        function ampliar(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        iniciar();
+    </script>
+</body>
+</html>
