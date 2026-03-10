@@ -117,3 +117,32 @@
                                     <small style="opacity:0.5; text-transform:uppercase; font-size:0.6rem; display:block; margin-top:20px;">${p.categoria}</small>
                                     <h3>${p.nome}</h3>
                                     <p class="preco">${p.preco}€</p>
+                                    <a href="${linkInstagram}" target="_blank" class="btn-insta">CONSULTAR</a>
+                                </div>
+                            </div>`;
+                    });
+                }
+
+                const categorias = ['Todos', ...new Set(produtos.map(p => p.categoria))];
+                categorias.forEach(cat => {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn-filtro' + (cat === 'Todos' ? ' active' : '');
+                    btn.innerText = cat;
+                    btn.onclick = () => mostrar(cat === 'Todos' ? produtos : produtos.filter(p => p.categoria === cat), cat);
+                    filtrosContainer.appendChild(btn);
+                });
+                mostrar(produtos, 'Todos');
+            } catch (e) { 
+                console.error("Erro ao carregar produtos:", e);
+            }
+        }
+
+        function ampliar(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        iniciar();
+    </script>
+</body>
+</html>
