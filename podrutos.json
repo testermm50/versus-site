@@ -10,5 +10,11 @@
     "categoria": "Flores",
     "preco": "25.00",
     "imagem": "flores.jpg"
+  },
+  {
+    "nome": "Cesta",
+    "categoria": "Cesta",
+    "preco": "25.00",
+    "imagem": "cesta.jpg"
   }
 ]
