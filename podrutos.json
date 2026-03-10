@@ -1,0 +1,14 @@
+[
+  {
+    "nome": "Vela de Soja Lavanda",
+    "categoria": "Velas",
+    "preco": "12.50",
+    "imagem": "vela.jpg"
+  },
+  {
+    "nome": "Arranjo Seco Outono",
+    "categoria": "Flores",
+    "preco": "25.00",
+    "imagem": "flores.jpg"
+  }
+]
