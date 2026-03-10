@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Versus Handmade | Catálogo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --fundo-creme: #F3EAE0; 
+            --dourado: #C5A059;
+            --texto: #333;
+            --branco: #ffffff;
+        }
+
+        body { margin: 0; background-color: var(--fundo-creme); font-family: 'Montserrat', sans-serif; color: var(--texto); }
+        
+        header { text-align: center; padding: 40px 20px; }
+        .brand-logo { max-width: 220px; height: auto; margin-bottom: 10px; }
+
+        /* Menu de Categorias */
+        .filtros { text-align: center; margin-bottom: 40px; }
+        .btn-filtro { 
+            background: none; border: 1px solid var(--dourado); color: var(--dourado);
+            padding: 8px 20px; margin: 5px; cursor: pointer; border-radius: 20px;
+            font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s;
+        }
+        .btn-filtro:hover, .btn-filtro.active { background: var(--dourado); color: white; }
+
+        /* Mural Dinâmico */
+        .mural { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 25px; padding: 0 40px; max-width: 1200px; margin: 0 auto;
+        }
+
+        .produto { 
+            background: var(--branco); border-radius: 8px; overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.4s;
