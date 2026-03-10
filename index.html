@@ -58,11 +58,11 @@
         .info h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 25px 0 10px; font-weight: 400; }
         .preco { color: var(--rosa-seco); font-weight: 400; font-size: 1.1rem; margin-bottom: 20px; }
         
-        .btn-whats { 
+        .btn-insta { 
             display: inline-block; text-decoration: none; background: var(--texto); color: white; 
             padding: 12px 30px; font-size: 0.7rem; letter-spacing: 2px; border-radius: 30px; transition: 0.3s; 
         }
-        .btn-whats:hover { background: var(--rosa-seco); transform: scale(1.05); }
+        .btn-insta:hover { background: var(--rosa-seco); transform: scale(1.05); }
         
         footer { text-align: center; padding: 80px 20px; }
         .instagram-link { text-decoration: none; color: var(--rosa-seco); font-weight: 400; font-size: 0.9rem; letter-spacing: 1px; }
@@ -91,8 +91,8 @@
     </footer>
 
     <script>
-        // Lembra-te de colocar o teu número real aqui:
-        const meuWhatsapp = "351910000000"; 
+        // Agora o link principal é o teu Instagram
+        const linkInstagram = "https://instagram.com/versus_handmade"; 
 
         async function iniciar() {
             try {
@@ -117,32 +117,3 @@
                                     <small style="opacity:0.5; text-transform:uppercase; font-size:0.6rem; display:block; margin-top:20px;">${p.categoria}</small>
                                     <h3>${p.nome}</h3>
                                     <p class="preco">${p.preco}€</p>
-                                    <a href="https://wa.me/${meuWhatsapp}?text=Olá! Gostaria de saber mais sobre: ${p.nome}" target="_blank" class="btn-whats">CONSULTAR</a>
-                                </div>
-                            </div>`;
-                    });
-                }
-
-                const categorias = ['Todos', ...new Set(produtos.map(p => p.categoria))];
-                categorias.forEach(cat => {
-                    const btn = document.createElement('button');
-                    btn.className = 'btn-filtro' + (cat === 'Todos' ? ' active' : '');
-                    btn.innerText = cat;
-                    btn.onclick = () => mostrar(cat === 'Todos' ? produtos : produtos.filter(p => p.categoria === cat), cat);
-                    filtrosContainer.appendChild(btn);
-                });
-                mostrar(produtos, 'Todos');
-            } catch (e) { 
-                console.error("Erro ao carregar produtos:", e);
-            }
-        }
-
-        function ampliar(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-
-        iniciar();
-    </script>
-</body>
-</html>
